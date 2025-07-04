@@ -192,32 +192,52 @@ body {
     max-height: 100%; /* Ensure it doesn't exceed container */
 }
 
-/* Project images also maintain aspect ratio */
+/* Project images styling */
+.projects-section .card > div:first-child {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #374151; /* gray-700 */
+}
+
+.projects-section .card img {
+    border-radius: 0.375rem; /* rounded-md */
+    transition: transform 0.3s ease;
+}
+
+.projects-section .card:hover img {
+    transform: scale(1.02);
+}
+
+/* Special styling for Textify project grid */
+.projects-section .grid.grid-cols-2 {
+    gap: 0.5rem; /* Reduced gap between images */
+}
+
+.projects-section .grid.grid-cols-2 img {
+    border-radius: 0.25rem; /* Smaller border radius for grid images */
+}
+
+/* Responsive adjustments for project images */
+@media (max-width: 767px) {
+    .projects-section .card > div:first-child {
+        height: auto;
+        min-height: 200px;
+    }
+    
+    .projects-section .grid.grid-cols-2 {
+        height: 180px; /* Smaller on mobile */
+    }
+}
+
 @media (min-width: 768px) {
     .projects-section .card > div:first-child {
-        height: auto; /* CHANGED: auto height */
-        min-height: 200px; /* Minimum height for consistency */
+        min-height: 250px;
     }
 }
 
 @media (min-width: 1024px) {
     .projects-section .card > div:first-child {
-        min-height: 250px; /* CHANGED: minimum height instead of fixed */
+        min-height: 300px;
     }
-}
-
-/* Additional styles for project images */
-.projects-section .card > div:first-child {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem;
-}
-
-.projects-section .card img {
-    object-fit: contain;
-    width: 100%;
-    height: auto;
-    max-height: 100%;
-    border-radius: 0.375rem; /* rounded-md */
 }
