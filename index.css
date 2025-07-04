@@ -58,8 +58,10 @@ body {
     }
     
     .hero-image {
-        width: 200px !important;
-        height: 200px !important;
+        width: 180px !important; /* Slightly smaller for mobile */
+        height: 180px !important;
+        margin: 0 auto; /* Center the image */
+        flex-shrink: 0; /* Prevent shrinking */
     }
     
     .experience-card {
@@ -80,34 +82,125 @@ body {
     }
 }
 
-/* Desktop experience image sizes */
+/* Tablet adjustments */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .hero-image {
+        width: 220px;
+        height: 220px;
+        margin: 0 auto;
+        flex-shrink: 0;
+    }
+}
+
+/* Desktop adjustments */
+@media (min-width: 1024px) {
+    .hero-image {
+        width: 280px;
+        height: 280px;
+        flex-shrink: 0;
+    }
+}
+
+/* Large desktop adjustments */
+@media (min-width: 1280px) {
+    .hero-image {
+        width: 320px;
+        height: 320px;
+        flex-shrink: 0;
+    }
+}
+
+/* Responsive container padding */
+.main-container {
+    @apply container mx-auto pt-24;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
 @media (min-width: 768px) {
-    .nav-links {
-        display: flex;
-    }
-    
-    .mobile-nav {
-        display: none;
-    }
-    
-    /* Auto height to maintain aspect ratio */
-    .experience-image div {
-        min-height: 200px; /* Minimum height for consistency */
-        height: auto; /* Allow natural height */
+    .main-container {
+        padding-left: 2rem;
+        padding-right: 2rem;
     }
 }
 
 @media (min-width: 1024px) {
-    .experience-image div {
-        min-height: 250px; /* Larger minimum for desktop */
-        height: auto;
+    .main-container {
+        padding-left: 4rem;
+        padding-right: 4rem;
+        padding-left: 13rem;
+        padding-top: 10rem;
     }
 }
 
 @media (min-width: 1280px) {
-    .experience-image div {
-        min-height: 300px; /* Even larger for XL screens */
-        height: auto;
+    .main-container {
+        padding-left: 10rem;
+        padding-right: 10rem;
+    }
+}
+
+/* Mobile-specific adjustments */
+@media (max-width: 767px) {
+    .hero-title {
+        font-size: 2.5rem !important;
+        line-height: 1.2;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.25rem !important;
+    }
+    
+    .hero-image {
+        width: 180px !important; /* Slightly smaller for mobile */
+        height: 180px !important;
+        margin: 0 auto; /* Center the image */
+        flex-shrink: 0; /* Prevent shrinking */
+    }
+    
+    .experience-card {
+        flex-direction: column !important;
+    }
+    
+    .experience-image {
+        width: 100% !important;
+        margin-bottom: 1rem;
+    }
+    
+    .nav-links {
+        display: none;
+    }
+    
+    .mobile-nav {
+        display: flex;
+    }
+}
+
+/* Tablet adjustments */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .hero-image {
+        width: 220px;
+        height: 220px;
+        margin: 0 auto;
+        flex-shrink: 0;
+    }
+}
+
+/* Desktop adjustments */
+@media (min-width: 1024px) {
+    .hero-image {
+        width: 280px;
+        height: 280px;
+        flex-shrink: 0;
+    }
+}
+
+/* Large desktop adjustments */
+@media (min-width: 1280px) {
+    .hero-image {
+        width: 320px;
+        height: 320px;
+        flex-shrink: 0;
     }
 }
 
@@ -282,12 +375,12 @@ body {
     }
 }
 
-/* Hero image styling - UPDATED with advanced effects */
+/* Hero image styling - UPDATED with simple circular border, no shadows */
 .hero-image {
     position: relative;
     border-radius: 50%;
+    background: linear-gradient(135deg, #06b6d4, #0891b2, #0e7490);
     padding: 0.5rem;
-    transition: all 0.3s ease;
     overflow: hidden;
 }
 
@@ -316,9 +409,5 @@ body {
     object-fit: cover;
     border-radius: 50%;
     border: 3px solid #111827;
-    transition: all 0.3s ease;
-}
-
-.hero-image:hover img {
-    transform: scale(1.02);
+    display: block;
 }
