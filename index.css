@@ -1,0 +1,140 @@
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #111827;
+    color: #E5E7EB;
+}
+
+.section-title {
+    @apply text-3xl font-bold text-cyan-400 mb-8;
+}
+
+.card {
+    @apply bg-gray-800 p-6 rounded-lg shadow-lg transition-transform duration-300 hover:scale-105;
+}
+
+.tag {
+    @apply inline-block bg-gray-700 text-cyan-300 text-xs font-semibold mr-2 mb-2 px-2.5 py-0.5 rounded-full;
+}
+
+/* Responsive container padding */
+.main-container {
+    @apply container mx-auto pt-24;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+@media (min-width: 768px) {
+    .main-container {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .main-container {
+        padding-left: 4rem;
+        padding-right: 4rem;
+    }
+}
+
+@media (min-width: 1280px) {
+    .main-container {
+        padding-left: 10rem;
+        padding-right: 10rem;
+    }
+}
+
+/* Mobile-specific adjustments */
+@media (max-width: 767px) {
+    .hero-title {
+        font-size: 2.5rem !important;
+        line-height: 1.2;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.25rem !important;
+    }
+    
+    .hero-image {
+        width: 200px !important;
+        height: 200px !important;
+    }
+    
+    .experience-card {
+        flex-direction: column !important;
+    }
+    
+    .experience-image {
+        width: 100% !important;
+        margin-bottom: 1rem;
+    }
+    
+    .nav-links {
+        display: none;
+    }
+    
+    .mobile-nav {
+        display: flex;
+    }
+}
+
+@media (min-width: 768px) {
+    .nav-links {
+        display: flex;
+    }
+    
+    .mobile-nav {
+        display: none;
+    }
+}
+
+/* Animation for scroll */
+.reveal {
+    position: relative;
+    transform: translateY(100px);
+    opacity: 0;
+    transition: all 1s ease;
+}
+
+.reveal.active {
+    transform: translateY(0px);
+    opacity: 1;
+}
+
+/* Hide elements by default */
+[data-lang-es],
+[data-lang-en] {
+    display: none;
+}
+
+/* Mobile menu styles */
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 75%;
+    height: 100vh;
+    background-color: #1f2937;
+    z-index: 50;
+    transition: left 0.3s ease;
+    padding-top: 5rem;
+}
+
+.mobile-menu.active {
+    left: 0;
+}
+
+.mobile-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 40;
+    display: none;
+}
+
+.mobile-overlay.active {
+    display: block;
+}
