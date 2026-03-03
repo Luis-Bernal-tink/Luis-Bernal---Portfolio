@@ -415,29 +415,9 @@ body::after {
 /* ===================================================================
    Experience Section
    =================================================================== */
-.experience-image img {
-    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    border-radius: 12px;
-}
-
-.experience-image div:not(.carousel):not(.carousel-track):not(.carousel-slide):not(.carousel-dots) {
-    position: relative;
+.experience-image {
     overflow: hidden;
     border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--bg-surface);
-    padding: 1rem;
-    border: 1px solid var(--border-subtle);
-}
-
-.experience-image img:not(.carousel-slide img) {
-    object-fit: contain;
-    object-position: center;
-    width: 100%;
-    height: auto;
-    max-height: 100%;
 }
 
 /* ===================================================================
@@ -841,9 +821,8 @@ section[id] {
     background: rgba(255, 255, 255, 0.2);
 }
 
-/* Make project & experience images clickable */
-.projects-section img,
-.experience-image img {
+/* Make project images clickable */
+.projects-section img {
     cursor: zoom-in;
 }
 
@@ -853,169 +832,114 @@ section[id] {
 }
 
 /* ===================================================================
-   Image Carousel
+   Infinite Marquee Carousel
    =================================================================== */
-.carousel {
+.marquee-carousel {
     position: relative;
     overflow: hidden;
     border-radius: 12px;
     background: var(--bg-surface);
     border: 1px solid var(--border-subtle);
     width: 100%;
-    aspect-ratio: 16 / 9;
+    padding: 1rem 0;
+    /* Fade edges */
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
 }
 
-.carousel-track {
+.marquee-track {
     display: flex;
-    width: 100%;
-    height: 100%;
-    transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    gap: 1.5rem;
+    width: max-content;
+    animation: marquee-scroll 20s linear infinite;
 }
 
-.carousel-slide {
-    min-width: 100%;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem;
-    position: relative;
+.marquee-carousel:hover .marquee-track {
+    animation-play-state: paused;
+}
+
+@keyframes marquee-scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.marquee-item {
+    flex-shrink: 0;
+    width: 380px;
+    height: 240px;
+    border-radius: 10px;
     overflow: hidden;
+    position: relative;
+    border: 1px solid var(--border-subtle);
+    background: var(--bg-base);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.carousel-slide img {
+.marquee-item:hover {
+    border-color: var(--border-hover);
+    box-shadow: 0 0 30px rgba(var(--primary-rgb), 0.2),
+                0 8px 32px rgba(0, 0, 0, 0.4);
+    transform: scale(1.06);
+    z-index: 5;
+}
+
+.marquee-item img {
     width: 100%;
     height: 100%;
-    object-fit: contain;
-    object-position: center;
-    border-radius: 8px;
+    object-fit: cover;
+    object-position: center top;
+    border-radius: 9px;
+    cursor: zoom-in;
     transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1),
                 filter 0.4s ease;
-    cursor: zoom-in;
 }
 
-.carousel-slide img:hover {
-    transform: scale(1.08);
-    filter: brightness(1.08);
+.marquee-item:hover img {
+    transform: scale(1.05);
+    filter: brightness(1.1);
 }
 
-/* Navigation Buttons */
-.carousel-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 10;
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    background: rgba(6, 9, 24, 0.7);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    color: white;
-    font-size: 1.2rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transition: all 0.35s ease;
-    line-height: 1;
-}
-
-.carousel:hover .carousel-btn {
-    opacity: 1;
-}
-
-.carousel-btn:hover {
-    background: rgba(99, 102, 241, 0.5);
-    border-color: rgba(99, 102, 241, 0.6);
-    box-shadow: 0 0 16px rgba(99, 102, 241, 0.3);
-    transform: translateY(-50%) scale(1.1);
-}
-
-.carousel-btn-prev {
-    left: 10px;
-}
-
-.carousel-btn-next {
-    right: 10px;
-}
-
-/* Dots / Indicators */
-.carousel-dots {
-    position: absolute;
-    bottom: 12px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 8px;
-    z-index: 10;
-}
-
-.carousel-dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    border: 2px solid rgba(255, 255, 255, 0.4);
-    background: transparent;
-    cursor: pointer;
-    padding: 0;
-    transition: all 0.35s ease;
-}
-
-.carousel-dot.active {
-    background: var(--primary);
-    border-color: var(--primary-light);
-    box-shadow: 0 0 10px rgba(var(--primary-rgb), 0.6);
-    transform: scale(1.2);
-}
-
-.carousel-dot:hover:not(.active) {
-    border-color: rgba(255, 255, 255, 0.7);
-    background: rgba(255, 255, 255, 0.2);
-}
-
-/* Progress bar for auto-play */
-.carousel-progress {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    height: 3px;
-    background: linear-gradient(90deg, var(--primary), var(--accent));
-    border-radius: 0 2px 0 0;
-    z-index: 10;
-    transition: width 0.1s linear;
-}
-
-/* Carousel responsive adjustments */
+/* Marquee responsive */
 @media (max-width: 767px) {
-    .carousel {
-        aspect-ratio: 4 / 3;
+    .marquee-carousel {
+        padding: 0.75rem 0;
+        border-radius: 10px;
     }
 
-    .carousel-btn {
-        width: 30px;
-        height: 30px;
-        font-size: 1rem;
-        opacity: 0.7;
+    .marquee-track {
+        gap: 1rem;
+        animation-duration: 15s;
     }
 
-    .carousel:hover .carousel-btn {
-        opacity: 1;
+    .marquee-item {
+        width: 260px;
+        height: 170px;
+        border-radius: 8px;
     }
 
-    .carousel-slide {
-        padding: 0.75rem;
+    .marquee-item img {
+        border-radius: 7px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    .marquee-item {
+        width: 320px;
+        height: 210px;
     }
 
-    .carousel-dots {
-        bottom: 8px;
+    .marquee-track {
+        animation-duration: 18s;
     }
+}
 
-    .carousel-dot {
-        width: 8px;
-        height: 8px;
+@media (min-width: 1280px) {
+    .marquee-item {
+        width: 420px;
+        height: 270px;
     }
 }

@@ -171,25 +171,22 @@
                 <div class="reveal card">
                     <div class="experience-card flex flex-col gap-6">
                         <div class="experience-image w-full">
-                            <div class="carousel" data-carousel>
-                                <div class="carousel-track">
-                                    <div class="carousel-slide">
-                                        <img src="images/tink-login.png" alt="Tink Login" loading="lazy">
-                                    </div>
-                                    <div class="carousel-slide">
-                                        <img src="images/tink-dashboard.png" alt="Tink Dashboard" loading="lazy">
-                                    </div>
-                                    <div class="carousel-slide">
-                                        <img src="images/tink-project.png" alt="Tink Project View" loading="lazy">
-                                    </div>
+                            <div class="marquee-carousel" data-marquee>
+                                <div class="marquee-track">
+                                    <div class="marquee-item"><img src="images/tink-login.png" alt="Tink Login"
+                                            loading="lazy"></div>
+                                    <div class="marquee-item"><img src="images/tink-dashboard.png" alt="Tink Dashboard"
+                                            loading="lazy"></div>
+                                    <div class="marquee-item"><img src="images/tink-project.png" alt="Tink Project View"
+                                            loading="lazy"></div>
+                                    <!-- Duplicados para loop infinito -->
+                                    <div class="marquee-item"><img src="images/tink-login.png" alt="Tink Login"
+                                            loading="lazy"></div>
+                                    <div class="marquee-item"><img src="images/tink-dashboard.png" alt="Tink Dashboard"
+                                            loading="lazy"></div>
+                                    <div class="marquee-item"><img src="images/tink-project.png" alt="Tink Project View"
+                                            loading="lazy"></div>
                                 </div>
-                                <div class="carousel-dots">
-                                    <button class="carousel-dot active" data-slide="0" aria-label="Slide 1"></button>
-                                    <button class="carousel-dot" data-slide="1" aria-label="Slide 2"></button>
-                                    <button class="carousel-dot" data-slide="2" aria-label="Slide 3"></button>
-                                </div>
-                                <button class="carousel-btn carousel-btn-prev" aria-label="Previous">&lsaquo;</button>
-                                <button class="carousel-btn carousel-btn-next" aria-label="Next">&rsaquo;</button>
                             </div>
                         </div>
                         <div class="w-full">
@@ -225,25 +222,22 @@
                 <div class="reveal card">
                     <div class="experience-card flex flex-col gap-6">
                         <div class="experience-image w-full">
-                            <div class="carousel" data-carousel>
-                                <div class="carousel-track">
-                                    <div class="carousel-slide">
-                                        <img src="images/enlightme-login.png" alt="Enlight Login" loading="lazy">
-                                    </div>
-                                    <div class="carousel-slide">
-                                        <img src="images/enlightme-menu.png" alt="Enlight Menu" loading="lazy">
-                                    </div>
-                                    <div class="carousel-slide">
-                                        <img src="images/enlightme-inputs.png" alt="Enlight Inputs" loading="lazy">
-                                    </div>
+                            <div class="marquee-carousel" data-marquee>
+                                <div class="marquee-track">
+                                    <div class="marquee-item"><img src="images/enlightme-login.png" alt="Enlight Login"
+                                            loading="lazy"></div>
+                                    <div class="marquee-item"><img src="images/enlightme-menu.png" alt="Enlight Menu"
+                                            loading="lazy"></div>
+                                    <div class="marquee-item"><img src="images/enlightme-inputs.png"
+                                            alt="Enlight Inputs" loading="lazy"></div>
+                                    <!-- Duplicados para loop infinito -->
+                                    <div class="marquee-item"><img src="images/enlightme-login.png" alt="Enlight Login"
+                                            loading="lazy"></div>
+                                    <div class="marquee-item"><img src="images/enlightme-menu.png" alt="Enlight Menu"
+                                            loading="lazy"></div>
+                                    <div class="marquee-item"><img src="images/enlightme-inputs.png"
+                                            alt="Enlight Inputs" loading="lazy"></div>
                                 </div>
-                                <div class="carousel-dots">
-                                    <button class="carousel-dot active" data-slide="0" aria-label="Slide 1"></button>
-                                    <button class="carousel-dot" data-slide="1" aria-label="Slide 2"></button>
-                                    <button class="carousel-dot" data-slide="2" aria-label="Slide 3"></button>
-                                </div>
-                                <button class="carousel-btn carousel-btn-prev" aria-label="Previous">&lsaquo;</button>
-                                <button class="carousel-btn carousel-btn-next" aria-label="Next">&rsaquo;</button>
                             </div>
                         </div>
                         <div class="w-full">
@@ -792,148 +786,16 @@
             updateActiveNav();
         });
 
-        // --- Image Carousels ---
-        document.querySelectorAll('[data-carousel]').forEach(carousel => {
-            const track = carousel.querySelector('.carousel-track');
-            const slides = carousel.querySelectorAll('.carousel-slide');
-            const dots = carousel.querySelectorAll('.carousel-dot');
-            const prevBtn = carousel.querySelector('.carousel-btn-prev');
-            const nextBtn = carousel.querySelector('.carousel-btn-next');
-            const totalSlides = slides.length;
-            let currentSlide = 0;
-            let autoPlayInterval = null;
-            let isPaused = false;
-            const AUTO_PLAY_DELAY = 3500;
-
-            // Add progress bar
-            const progressBar = document.createElement('div');
-            progressBar.classList.add('carousel-progress');
-            carousel.appendChild(progressBar);
-            let progressStart = null;
-            let progressRAF = null;
-
-            function goToSlide(index) {
-                currentSlide = ((index % totalSlides) + totalSlides) % totalSlides;
-                track.style.transform = `translateX(-${currentSlide * 100}%)`;
-                dots.forEach((dot, i) => {
-                    dot.classList.toggle('active', i === currentSlide);
-                });
-                // Reset progress
-                resetProgress();
-            }
-
-            function nextSlide() {
-                goToSlide(currentSlide + 1);
-            }
-
-            function prevSlide() {
-                goToSlide(currentSlide - 1);
-            }
-
-            function resetProgress() {
-                progressStart = performance.now();
-                progressBar.style.width = '0%';
-                if (progressRAF) cancelAnimationFrame(progressRAF);
-                animateProgress();
-            }
-
-            function animateProgress() {
-                if (isPaused) return;
-                const elapsed = performance.now() - progressStart;
-                const progress = Math.min((elapsed / AUTO_PLAY_DELAY) * 100, 100);
-                progressBar.style.width = progress + '%';
-                if (progress < 100) {
-                    progressRAF = requestAnimationFrame(animateProgress);
-                }
-            }
-
-            function startAutoPlay() {
-                stopAutoPlay();
-                isPaused = false;
-                resetProgress();
-                autoPlayInterval = setInterval(() => {
-                    if (!isPaused) nextSlide();
-                }, AUTO_PLAY_DELAY);
-            }
-
-            function stopAutoPlay() {
-                if (autoPlayInterval) {
-                    clearInterval(autoPlayInterval);
-                    autoPlayInterval = null;
-                }
-                if (progressRAF) cancelAnimationFrame(progressRAF);
-            }
-
-            // Events
-            prevBtn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                prevSlide();
-                startAutoPlay();
-            });
-
-            nextBtn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                nextSlide();
-                startAutoPlay();
-            });
-
-            dots.forEach(dot => {
-                dot.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    goToSlide(parseInt(dot.dataset.slide));
-                    startAutoPlay();
-                });
-            });
-
-            // Pause on hover
-            carousel.addEventListener('mouseenter', () => {
-                isPaused = true;
-                if (progressRAF) cancelAnimationFrame(progressRAF);
-                progressBar.style.transition = 'opacity 0.3s ease';
-                progressBar.style.opacity = '0.4';
-            });
-
-            carousel.addEventListener('mouseleave', () => {
-                isPaused = false;
-                progressBar.style.opacity = '1';
-                startAutoPlay();
-            });
-
-            // Touch/swipe support
-            let touchStartX = 0;
-            let touchEndX = 0;
-
-            carousel.addEventListener('touchstart', (e) => {
-                touchStartX = e.changedTouches[0].screenX;
-                isPaused = true;
-            }, { passive: true });
-
-            carousel.addEventListener('touchend', (e) => {
-                touchEndX = e.changedTouches[0].screenX;
-                const diff = touchStartX - touchEndX;
-                if (Math.abs(diff) > 50) {
-                    if (diff > 0) nextSlide();
-                    else prevSlide();
-                }
-                isPaused = false;
-                startAutoPlay();
-            }, { passive: true });
-
-            // Start
-            startAutoPlay();
-        });
-
-        // --- Lightbox for Project & Carousel Images ---
+        // --- Lightbox for Project & Marquee Images ---
         const lightbox = document.getElementById('lightbox-overlay');
         const lightboxImg = lightbox.querySelector('img');
         const lightboxClose = lightbox.querySelector('.lightbox-close');
 
-        document.querySelectorAll('.projects-section img, .carousel-slide img').forEach(img => {
+        document.querySelectorAll('.projects-section img, .marquee-item img').forEach(img => {
             img.addEventListener('click', (e) => {
                 e.stopPropagation();
                 lightboxImg.src = img.src;
                 lightboxImg.alt = img.alt;
-                // Force reflow so transition plays
                 lightbox.offsetHeight;
                 lightbox.classList.add('active');
                 document.body.style.overflow = 'hidden';
