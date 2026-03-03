@@ -119,12 +119,18 @@
                         maintenance. As an Applied Mathematics & Computing student at UNAM, I complement my technical
                         profile with a strong focus on data analysis/data science and the strategic application of AI to
                         turn information into efficient decisions.</span>
-                    <span data-lang-es>Desarrollador con experiencia en la construcción y optimización de plataformas
-                        digitales para la monitorización y análisis de sistemas fotovoltaicos en el sector energético.
+                    <span data-lang-es>Desarrollador en formación con experiencia en la construcción de sistemas
+                        digitales, actualmente enfocados a la
+                        monitorización y análisis de sistemas fotovoltaicos en el sector energético.
+
                         He liderado proyectos de desarrollo de software en entornos empresariales, participando desde la
-                        arquitectura hasta el despliegue y mantenimiento. Como estudiante de Matemáticas Aplicadas y
-                        Computación en la UNAM, complemento mi perfil técnico con una fuerte orientación al
-                        análisis/ciencia de datos y la aplicación estratégica de IA para transformar información en
+                        arquitectura hasta el
+                        despliegue y mantenimiento.
+
+                        Como estudiante de Matemáticas Aplicadas y Computación en la UNAM, complemento mi perfil técnico
+                        con una fuerte
+                        orientación al análisis de datos y la aplicación estratégica de inteligencia artificial para
+                        transformar información en
                         decisiones eficientes.</span>
                 </p>
                 <div class="flex justify-center md:justify-start space-x-5 animate-fade-in-up animate-delay-4">
@@ -165,8 +171,25 @@
                 <div class="reveal card">
                     <div class="experience-card flex flex-col gap-6">
                         <div class="experience-image w-full">
-                            <div class="rounded-lg overflow-hidden">
-                                <img src="images/ingenor-tink.png" alt="Tink by Ingenor Platform" loading="lazy">
+                            <div class="carousel" data-carousel>
+                                <div class="carousel-track">
+                                    <div class="carousel-slide">
+                                        <img src="images/tink-login.png" alt="Tink Login" loading="lazy">
+                                    </div>
+                                    <div class="carousel-slide">
+                                        <img src="images/tink-dashboard.png" alt="Tink Dashboard" loading="lazy">
+                                    </div>
+                                    <div class="carousel-slide">
+                                        <img src="images/tink-project.png" alt="Tink Project View" loading="lazy">
+                                    </div>
+                                </div>
+                                <div class="carousel-dots">
+                                    <button class="carousel-dot active" data-slide="0" aria-label="Slide 1"></button>
+                                    <button class="carousel-dot" data-slide="1" aria-label="Slide 2"></button>
+                                    <button class="carousel-dot" data-slide="2" aria-label="Slide 3"></button>
+                                </div>
+                                <button class="carousel-btn carousel-btn-prev" aria-label="Previous">&lsaquo;</button>
+                                <button class="carousel-btn carousel-btn-next" aria-label="Next">&rsaquo;</button>
                             </div>
                         </div>
                         <div class="w-full">
@@ -202,8 +225,25 @@
                 <div class="reveal card">
                     <div class="experience-card flex flex-col gap-6">
                         <div class="experience-image w-full">
-                            <div class="rounded-lg overflow-hidden">
-                                <img src="images/apollo-enlight.png" alt="Apollo by Enlight Platform" loading="lazy">
+                            <div class="carousel" data-carousel>
+                                <div class="carousel-track">
+                                    <div class="carousel-slide">
+                                        <img src="images/enlightme-login.png" alt="Enlight Login" loading="lazy">
+                                    </div>
+                                    <div class="carousel-slide">
+                                        <img src="images/enlightme-menu.png" alt="Enlight Menu" loading="lazy">
+                                    </div>
+                                    <div class="carousel-slide">
+                                        <img src="images/enlightme-inputs.png" alt="Enlight Inputs" loading="lazy">
+                                    </div>
+                                </div>
+                                <div class="carousel-dots">
+                                    <button class="carousel-dot active" data-slide="0" aria-label="Slide 1"></button>
+                                    <button class="carousel-dot" data-slide="1" aria-label="Slide 2"></button>
+                                    <button class="carousel-dot" data-slide="2" aria-label="Slide 3"></button>
+                                </div>
+                                <button class="carousel-btn carousel-btn-prev" aria-label="Previous">&lsaquo;</button>
+                                <button class="carousel-btn carousel-btn-next" aria-label="Next">&rsaquo;</button>
                             </div>
                         </div>
                         <div class="w-full">
@@ -491,6 +531,7 @@
             <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
                 <div class="reveal card">
                     <h3 class="text-base md:text-lg font-bold text-white mb-1">Google Cloud Computing Foundations</h3>
+                    <p class="text-sm md:text-md text-indigo-400 font-semibold">Google</p>
                     <p class="text-xs md:text-sm text-gray-500">
                         <span data-lang-en>2024 &#8211; Present</span>
                         <span data-lang-es>2024 &#8211; Presente</span>
@@ -533,6 +574,7 @@
                 </div>
                 <div class="reveal card">
                     <h3 class="text-base md:text-lg font-bold text-white mb-1">Professional Git & GitHub</h3>
+                    <p class="text-sm md:text-md text-indigo-400 font-semibold">Platzi</p>
                     <p class="text-xs md:text-sm text-gray-500">2023</p>
                 </div>
                 <div class="reveal card">
@@ -540,6 +582,7 @@
                         <span data-lang-en>JavaScript from Scratch</span>
                         <span data-lang-es>JavaScript desde Cero</span>
                     </h3>
+                    <p class="text-sm md:text-md text-indigo-400 font-semibold">Platzi</p>
                     <p class="text-xs md:text-sm text-gray-500">2023</p>
                 </div>
                 <div class="reveal card">
@@ -547,6 +590,7 @@
                         <span data-lang-en>Fundamentals of TypeScript</span>
                         <span data-lang-es>Fundamentos de TypeScript</span>
                     </h3>
+                    <p class="text-sm md:text-md text-indigo-400 font-semibold">Platzi</p>
                     <p class="text-xs md:text-sm text-gray-500">2023</p>
                 </div>
             </div>
@@ -747,13 +791,146 @@
             reveal();
             updateActiveNav();
         });
-        // --- Lightbox for Project Images ---
+
+        // --- Image Carousels ---
+        document.querySelectorAll('[data-carousel]').forEach(carousel => {
+            const track = carousel.querySelector('.carousel-track');
+            const slides = carousel.querySelectorAll('.carousel-slide');
+            const dots = carousel.querySelectorAll('.carousel-dot');
+            const prevBtn = carousel.querySelector('.carousel-btn-prev');
+            const nextBtn = carousel.querySelector('.carousel-btn-next');
+            const totalSlides = slides.length;
+            let currentSlide = 0;
+            let autoPlayInterval = null;
+            let isPaused = false;
+            const AUTO_PLAY_DELAY = 3500;
+
+            // Add progress bar
+            const progressBar = document.createElement('div');
+            progressBar.classList.add('carousel-progress');
+            carousel.appendChild(progressBar);
+            let progressStart = null;
+            let progressRAF = null;
+
+            function goToSlide(index) {
+                currentSlide = ((index % totalSlides) + totalSlides) % totalSlides;
+                track.style.transform = `translateX(-${currentSlide * 100}%)`;
+                dots.forEach((dot, i) => {
+                    dot.classList.toggle('active', i === currentSlide);
+                });
+                // Reset progress
+                resetProgress();
+            }
+
+            function nextSlide() {
+                goToSlide(currentSlide + 1);
+            }
+
+            function prevSlide() {
+                goToSlide(currentSlide - 1);
+            }
+
+            function resetProgress() {
+                progressStart = performance.now();
+                progressBar.style.width = '0%';
+                if (progressRAF) cancelAnimationFrame(progressRAF);
+                animateProgress();
+            }
+
+            function animateProgress() {
+                if (isPaused) return;
+                const elapsed = performance.now() - progressStart;
+                const progress = Math.min((elapsed / AUTO_PLAY_DELAY) * 100, 100);
+                progressBar.style.width = progress + '%';
+                if (progress < 100) {
+                    progressRAF = requestAnimationFrame(animateProgress);
+                }
+            }
+
+            function startAutoPlay() {
+                stopAutoPlay();
+                isPaused = false;
+                resetProgress();
+                autoPlayInterval = setInterval(() => {
+                    if (!isPaused) nextSlide();
+                }, AUTO_PLAY_DELAY);
+            }
+
+            function stopAutoPlay() {
+                if (autoPlayInterval) {
+                    clearInterval(autoPlayInterval);
+                    autoPlayInterval = null;
+                }
+                if (progressRAF) cancelAnimationFrame(progressRAF);
+            }
+
+            // Events
+            prevBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                prevSlide();
+                startAutoPlay();
+            });
+
+            nextBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                nextSlide();
+                startAutoPlay();
+            });
+
+            dots.forEach(dot => {
+                dot.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    goToSlide(parseInt(dot.dataset.slide));
+                    startAutoPlay();
+                });
+            });
+
+            // Pause on hover
+            carousel.addEventListener('mouseenter', () => {
+                isPaused = true;
+                if (progressRAF) cancelAnimationFrame(progressRAF);
+                progressBar.style.transition = 'opacity 0.3s ease';
+                progressBar.style.opacity = '0.4';
+            });
+
+            carousel.addEventListener('mouseleave', () => {
+                isPaused = false;
+                progressBar.style.opacity = '1';
+                startAutoPlay();
+            });
+
+            // Touch/swipe support
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            carousel.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+                isPaused = true;
+            }, { passive: true });
+
+            carousel.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                const diff = touchStartX - touchEndX;
+                if (Math.abs(diff) > 50) {
+                    if (diff > 0) nextSlide();
+                    else prevSlide();
+                }
+                isPaused = false;
+                startAutoPlay();
+            }, { passive: true });
+
+            // Start
+            startAutoPlay();
+        });
+
+        // --- Lightbox for Project & Carousel Images ---
         const lightbox = document.getElementById('lightbox-overlay');
         const lightboxImg = lightbox.querySelector('img');
         const lightboxClose = lightbox.querySelector('.lightbox-close');
 
-        document.querySelectorAll('.projects-section img, .experience-image img').forEach(img => {
-            img.addEventListener('click', () => {
+        document.querySelectorAll('.projects-section img, .carousel-slide img').forEach(img => {
+            img.addEventListener('click', (e) => {
+                e.stopPropagation();
                 lightboxImg.src = img.src;
                 lightboxImg.alt = img.alt;
                 // Force reflow so transition plays
