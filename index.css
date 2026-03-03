@@ -845,72 +845,44 @@ section[id] {
     /* Fade edges */
     -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
     mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+    -webkit-touch-callout: none;
 }
 
 .marquee-track {
-    display: flex;
-    width: -webkit-max-content;
-    width: max-content;
+    display: inline-flex;
     will-change: transform;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
-    -webkit-animation: marquee-scroll 20s linear infinite;
-    animation: marquee-scroll 20s linear infinite;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
 }
 
-/* Gap via margins for older Safari compatibility */
+/* Gap via margins for Safari compatibility */
 .marquee-item + .marquee-item {
     margin-left: 1.5rem;
 }
 
-.marquee-carousel:hover .marquee-track {
-    -webkit-animation-play-state: paused;
-    animation-play-state: paused;
-}
-
-@-webkit-keyframes marquee-scroll {
-    0% {
-        -webkit-transform: translateX(0);
-        transform: translateX(0);
-    }
-    100% {
-        -webkit-transform: translateX(-50%);
-        transform: translateX(-50%);
-    }
-}
-
-@keyframes marquee-scroll {
-    0% {
-        -webkit-transform: translateX(0);
-        transform: translateX(0);
-    }
-    100% {
-        -webkit-transform: translateX(-50%);
-        transform: translateX(-50%);
-    }
-}
-
 .marquee-item {
     flex-shrink: 0;
-    width: 380px;
-    height: 240px;
+    width: 85vw;
+    max-width: 380px;
+    height: 55vw;
+    max-height: 240px;
     border-radius: 10px;
     overflow: hidden;
     position: relative;
     border: 1px solid var(--border-subtle);
     background: var(--bg-base);
-    -webkit-transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
+    -webkit-transition: border-color 0.4s ease, box-shadow 0.4s ease;
+    transition: border-color 0.4s ease, box-shadow 0.4s ease;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
 }
 
 .marquee-item:hover {
     border-color: var(--border-hover);
     box-shadow: 0 0 30px rgba(var(--primary-rgb), 0.2),
                 0 8px 32px rgba(0, 0, 0, 0.4);
-    -webkit-transform: scale(1.06) translateZ(0);
-    transform: scale(1.06) translateZ(0);
     z-index: 5;
 }
 
@@ -921,63 +893,49 @@ section[id] {
     object-position: center top;
     border-radius: 9px;
     cursor: zoom-in;
-    -webkit-transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1),
-                        filter 0.4s ease;
+    -webkit-transition: -webkit-transform 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                        -webkit-filter 0.4s ease;
     transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1),
                 filter 0.4s ease;
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
 }
 
 .marquee-item:hover img {
-    -webkit-transform: scale(1.05) translateZ(0);
-    transform: scale(1.05) translateZ(0);
+    -webkit-transform: scale(1.05) translate3d(0, 0, 0);
+    transform: scale(1.05) translate3d(0, 0, 0);
     -webkit-filter: brightness(1.1);
     filter: brightness(1.1);
 }
 
 /* Marquee responsive */
-@media (max-width: 767px) {
-    .marquee-carousel {
-        padding: 0.75rem 0;
-        border-radius: 10px;
-    }
-
-    .marquee-track {
-        -webkit-animation-duration: 15s;
-        animation-duration: 15s;
-    }
-
-    .marquee-item + .marquee-item {
-        margin-left: 1rem;
-    }
-
+@media (min-width: 480px) {
     .marquee-item {
-        width: 260px;
-        height: 170px;
-        border-radius: 8px;
-    }
-
-    .marquee-item img {
-        border-radius: 7px;
+        width: 320px;
+        max-width: 320px;
+        height: 210px;
+        max-height: 210px;
     }
 }
 
-@media (min-width: 768px) and (max-width: 1023px) {
+@media (min-width: 768px) {
     .marquee-item {
-        width: 320px;
-        height: 210px;
+        width: 380px;
+        max-width: 380px;
+        height: 240px;
+        max-height: 240px;
     }
 
-    .marquee-track {
-        -webkit-animation-duration: 18s;
-        animation-duration: 18s;
+    .marquee-item + .marquee-item {
+        margin-left: 1.5rem;
     }
 }
 
 @media (min-width: 1280px) {
     .marquee-item {
         width: 420px;
+        max-width: 420px;
         height: 270px;
+        max-height: 270px;
     }
 }

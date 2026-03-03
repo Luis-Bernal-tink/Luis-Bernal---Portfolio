@@ -786,6 +786,83 @@
             updateActiveNav();
         });
 
+        // --- Marquee Infinite Scroll (JS-based for iOS Safari compatibility) ---
+        document.querySelectorAll('[data-marquee]').forEach(carousel => {
+            const track = carousel.querySelector('.marquee-track');
+            const items = track.querySelectorAll('.marquee-item');
+            const halfCount = items.length / 2; // We have duplicated items
+            let offset = 0;
+            let speed = 0.5; // px per frame
+            let isPaused = false;
+            let rafId = null;
+
+            function getHalfWidth() {
+                // Calculate the width of the first half of items (original set)
+                let w = 0;
+                for (let i = 0; i < halfCount; i++) {
+                    w += items[i].offsetWidth;
+                    if (i < halfCount - 1) {
+                        const style = getComputedStyle(items[i + 1]);
+                        w += parseFloat(style.marginLeft) || 0;
+                    }
+                }
+                // Add margin after last item of first half
+                if (items[halfCount]) {
+                    const style = getComputedStyle(items[halfCount]);
+                    w += parseFloat(style.marginLeft) || 0;
+                }
+                return w;
+            }
+
+            let halfWidth = 0;
+
+            function measure() {
+                halfWidth = getHalfWidth();
+            }
+
+            function animate() {
+                if (!isPaused) {
+                    offset += speed;
+                    if (halfWidth > 0 && offset >= halfWidth) {
+                        offset -= halfWidth;
+                    }
+                    track.style.webkitTransform = 'translate3d(' + (-offset) + 'px, 0, 0)';
+                    track.style.transform = 'translate3d(' + (-offset) + 'px, 0, 0)';
+                }
+                rafId = requestAnimationFrame(animate);
+            }
+
+            // Pause on hover / touch
+            carousel.addEventListener('mouseenter', () => { isPaused = true; });
+            carousel.addEventListener('mouseleave', () => { isPaused = false; });
+            carousel.addEventListener('touchstart', () => { isPaused = true; }, { passive: true });
+            carousel.addEventListener('touchend', () => { isPaused = false; }, { passive: true });
+
+            // Measure after images load, then start
+            function init() {
+                measure();
+                if (!rafId) animate();
+            }
+
+            // Wait for all images in this carousel to load
+            const imgs = track.querySelectorAll('img');
+            let loaded = 0;
+            imgs.forEach(img => {
+                if (img.complete) {
+                    loaded++;
+                } else {
+                    img.addEventListener('load', () => {
+                        loaded++;
+                        if (loaded >= imgs.length) init();
+                    });
+                }
+            });
+            if (loaded >= imgs.length) init();
+
+            // Recalculate on resize
+            window.addEventListener('resize', measure);
+        });
+
         // --- Lightbox for Project & Marquee Images ---
         const lightbox = document.getElementById('lightbox-overlay');
         const lightboxImg = lightbox.querySelector('img');
